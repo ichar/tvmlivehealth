@@ -1,7 +1,7 @@
 
-/*** ADMLOGGER ***/
+/*** LOGGER ***/
 
-body { overflow-y:inherit; }
+body { overflow-y:inherit; color:#777; }
 
 .page-header { max-width: 20em; font-size:2.0em !important; }
  
