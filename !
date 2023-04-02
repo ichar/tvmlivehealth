@@ -1,0 +1,63 @@
+telegram bot apps info
+======================
+
+pip3 install redis
+
+sudo apt-get install redis-server
+sudo service redis-server start
+
+sudo nano /etc/redis/redis.conf
+
+set param:
+
+supervised systemd
+
+-------------
+
+https://www.8host.com/blog/ustanovka-i-zashhita-redis-v-ubuntu-20-04/
+
+sudo systemctl restart redis.service
+
+python manage.py shell
+
+>> from app import db
+>> db.create_all()
+
+-------------
+
+To change heroku stack:
+
+$ cd /storage/www/apps/<app>
+$ heroku login
+$ heroku stack:set heroku-20
+
+$ git push heroku main
+
+-------------
+
+$ cd ... /mkarobot
+$ ./run.sh
+
+Open http://localhost:5000/ to start MKaroDebugBot. You have to see the note:
+
+*** Bot has been started ***
+
+App log:
+http://localhost:5000/debug
+
+------------
+
+Bot's commands:
+
+/start
+/help 
+...
+
+Difference between mkarobot and tvmlivehealth!!
+-----------------------------------------------
+Instead of app/bot/views.py module run.py
+Also another Procfile (app name: app:app->run:app )
+
+Source *.doc files: 
+-------------------
+/storage/docs/ua

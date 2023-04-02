@@ -1,0 +1,17 @@
+# -------------
+# LIVEHEALTHBOT
+# -------------
+
+# Print platform agent info
+IsLogAgent               :: 1
+# Use OFFSET in SQL-queries
+IsApplyOffset            :: 1
+# Forced Static Files loading
+IsForceRefresh           :: 1
+# Use Beep if forced refreshed
+IsWithBeep               :: 1
+#
+# ---------
+#
+# Трассировка по контрольным точкам
+IsWithPoints             :: 1

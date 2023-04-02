@@ -1,0 +1,64 @@
+/*** JQuery UI ***/
+
+.ui-dialog {
+    -webkit-box-shadow: 0px 0px 30px #14314F;
+    box-shadow: 0px 0px 30px #14314F;
+}
+.ui-dialog-buttonpane { text-align:center !important; }
+.ui-dialog-buttonset { font:normal 11px Arial !important; float:none; }
+.ui-widget { font:normal 12px Arial; }
+.ui-widget-header { font:bold 1.4em Arial; }
+.btn { padding:4px 15px 4px 15px; background-image:none; }
+
+.ui-widget { font:normal 12px Arial; }
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float:none !important;
+    margin-left:2px;
+}
+.ui-button-text { width:auto; font-family:Arial, "Lucida Grande"; font-size:11px; }
+
+#error-button-ok { color: #333; padding: 0.6em 1.2em; }
+
+#dialog-cache { display:inline-block; visibility:hidden; position:absolute; top:-2000px; width:1200px; }
+
+/*** Page loader ***/
+
+/*** GLOBAL ***/
+
+.hidden     { visibility:hidden; }
+.inprogress { cursor:wait !important; }
+.invisible  { display:none !important; width:0; height:0 }
+
+h1 {
+ font-size:2.0em;
+ font-weight:normal;
+ padding:0;
+ line-height:160%;
+ font-style:italic;
+}
+
+h3 { 
+    text-align:left; 
+    font-size:1.4em;
+    font-weight:bold;
+    margin:10px; 
+    color:#333; 
+}
+
+div.history { font-size:16px; color:white; display:inline-flex; float:right; }
+div.back, div.forward, div.history-menu { 
+    background-color:#888;
+    color:aliceblue;
+    padding:10px;
+    border:1px solid #e7e7e7;
+    margin:5px;
+    cursor:pointer;
+}
+div.back, div.forward {
+    border-radius:26px;
+}
+div.back:hover, div.forward:hover, div.history-menu:hover { 
+    background-color:#4aa732;
+    color:white;
+    border-color:white;
+}

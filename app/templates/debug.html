@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>debug</title>
+
+  <style type="text/css">
+    body { padding:10px; font-family:Arial,Tahoma; background-color:#ffffff; }
+    h1 { font-size:14px; padding:0; margin:0 0 10px 0; }
+    h1.caption { font-weight:bold; color:chocolate; font-size:24px; }
+    h2 { font-size:12px; color:#9c5478; font-weight:normal; }
+    .bg1 { background-color:#eee; }
+    .bg2 { background-color:#fed; }
+    .bg3 { background-color:#cdc; }
+    .negative .value { background-color:#46a !important; color:#fff; }
+    .zero .value { background-color:#d24 !important; color:#fff; }
+    .possitive .value {}
+    .value { width:fit-content; padding:0 2px 0 2px; }
+    .result { background-color:#333; color:#fff; }
+    .result .value { color:#333; }
+    .text { background-color:#884; color:#fff; }
+    .text .value { color:#333; }
+    div.server { font-size:12px; }
+    div.person { border:1px solid #ccc; padding:5px; margin-bottom:5px; width:fit-content; }
+    div.chat { font-weight:bold; margin-top:10px; color:#6880de; }
+    div.box { padding-left:20px; }
+    table.person { font-size:14px; margin-left:20px; }
+    table.person .data { display:flex; }
+    table.line { font-size:12px; margin-top:10px; padding-top: 10px; border-top: 1px dotted #333; }
+    table.line td { white-space:nowrap; border:1px solid #ccc; padding:3px; }
+    table.line td.data .value { background-color:#eee; }
+    table.dialog { font-size:12px; }
+  </style>
+
+</head>
+<body>
+  <div>
+    <h1 class="caption">Психолог ПТСР [TVMLiveHealthBot Telegram Bot]</h1>
+    
+    <div> {{ html['server']|safe  }} </div>
+    
+    <div> {{ html['header']|safe  }} </div>
+    
+    <hr>
+    <div class="box"> {{ content|safe }}</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{%- macro render_login(field) -%}
+
+  <div class="form-group {% if field.flags.required %}required{% endif %}">
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="text" value="">
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_password(field, show_password) -%}
+
+  <div class="form-group {% if field.flags.required %}required{% endif %}">
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+  {%- if show_password %}
+    <div class="input-group">
+      <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="password" value="">
+      <div class="input-group-addon x_pass" for="{{ field.id }}"><span class="glyphicon glyphicon-eye-open" title="{{ _('Show password') }}"></span></div>
+    </div>
+  {%- else %}
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="password" value="">
+  {%- endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_email(field, no_label, with_errors) -%}
+
+  <div class="form-group {% if field.flags.required %}required{% endif %}">
+  {%- if not no_label -%}
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+  {%- endif %}
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="text" value="">
+  {%- if with_errors -%}
+    {% for error in field.errors %}
+      <span style="color:red;">{{ error }}</span>
+    {% endfor %}
+  {%- endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_submit(field) -%}
+
+  <input class="btn btn-default" id="{{ field.id }}" name="{{ field.name }}" type="submit" value="{{ field.label.text|safe }}">
+
+{%- endmacro -%}
+
+{%- macro render_field(field) %}
+
+  <dt>{{ field.label }}{%- if field.flags.required -%}<span class="mandatory">*</span>{%- endif -%}</dt>
+  <dd>{{ field(**kwargs)|safe }}</dd>
+  
+  {%- if field.errors %}
+  <ul class=errors>
+    {%- for error in field.errors %}
+    <li>{{ field.gettext(error) }}</li>
+    {% endfor -%}
+  </ul>
+  {%- endif %}
+  <br>
+
+{%- endmacro %}
+
+{%- macro render_select(id, name, values, disabled) %}
+
+  <select class="popup" id="{{ id }}" name="{{ name }}" {{ disabled }}>
+  {% for value in values -%}
+    <option value="{{ value }}">{{ value }}</option>
+  {%- endfor %}
+  </select>
+
+{%- endmacro %}
+
+{%- macro render_combo(id, name, values, disabled) %}
+
+  <select class="popup" id="{{ id }}" name="{{ name }}" {{ disabled }}>
+  {% for value in values -%}
+    <option value="{{ value[0] }}">{{ value[1] }}</option>
+  {%- endfor %}
+  </select>
+
+{%- endmacro %}
+
+{%- macro render_selected_combo(id, name, values, selected, disabled) %}
+
+  <select class="popup" id="{{ id }}" name="{{ name }}" {{ disabled }}>
+  {% for value in values -%}
+    <option value="{{ value[0] }}" {% if value[0] == selected %}selected{% endif %}>{{ value[1] }}</option>
+  {%- endfor %}
+  </select>
+
+{%- endmacro %}
+
+{%- macro render_navigation_item(item) %}
+
+  <li class="{{ item['class'] }}"><a target="{{ item['target'] }}" class="mainmenu" id="{{ item['id'] }}" href="{{ item['link'] }}">{{ item['title'] }}</a></li>
+
+{%- endmacro %}
+
+{%- macro render_navigation_link(item) %}
+
+  <div class="link {{ item['class'] }}"><a class="mainmenu" href="{{ item['link'] }}">{{ item['title'] }}</a></div>
+
+{%- endmacro %}

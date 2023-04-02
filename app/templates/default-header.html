@@ -1,0 +1,33 @@
+{% import 'forms.html' as Forms %}
+
+{% block default_styles %}
+
+<style type="text/css">
+
+</style>
+
+{% endblock %}
+
+{% block header_styles %}
+
+<style type="text/css">
+
+</style>
+
+{% endblock %}
+
+<header id="page-header">
+  <div id="header-content" class="{{ header_class }}">
+    <div class="page-header {{ header_subclass }}" id="pageCaption">{{ page_title }}</div>
+  
+  {%- if navigation -%}
+    {%- set noavatar = not avatar -%}
+
+    <div class="navigation">
+
+    </div>
+
+  {%- endif -%}
+
+  </div>
+</header>

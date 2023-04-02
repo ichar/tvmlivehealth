@@ -1,0 +1,163 @@
+﻿{% extends "common.html" %}
+
+{% import 'forms.html' as Forms %}
+
+{% block header_styles %}
+
+{% endblock %}
+
+{% block page_styles %}
+
+<link href="{{ url_for('static', filename='css/style') }}.logger.css{{ vsc }}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block starter %}
+
+<script src="{{ url_for('static', filename='js/db.controller.js') }}{{ vsc }}"></script>
+<script src="{{ url_for('static', filename='js/log.default.js') }}{{ vsc }}"></script>
+<script src="{{ url_for('static', filename='js/logger.dialogs.js') }}{{ vsc }}"></script>
+<script src="{{ url_for('static', filename='js/logger.js') }}{{ vsc }}"></script>
+
+<script src="{{ url_for('static', filename='js/logger.default.js') }}{{ vsc }}"></script>
+
+<script type="text/javascript">
+
+var search_title = '{{ search_title }}'; //"Logger Search context..."
+
+</script> 
+
+{% endblock %}
+
+{% block data_section_title %}
+
+  <div class="data-title"><h2>{{ g.maketext(data_title, lang=lang) }}</h2>
+
+  {%- if mode == 1 -%}
+
+  <div class="back"><a href="{{ back }}">{{ g.maketext('Back', lang=lang) }}</a></div>
+
+  {%- endif -%}
+
+  </div>
+
+{% endblock %}
+
+{% block data_section_content %}
+
+  <div class="logger inline-content">
+
+  {% for name in names %}
+    {% set chat = output['chats'][name] %}
+    {% set scenario = chat['scenario'] %}
+    {% set lang = scenario['lang'] %}
+  
+    {%- if 'error' in chat -%}
+
+      <div class="item_error">{{ name }}</div>
+      <div>{{ chat }}</div>
+
+    {%- else -%}
+
+      {%- if mode == 1 -%}
+
+        <div class = "scope">
+          <div class="RD">
+            <dd>{{ g.maketext('Registry Date', lang=lang) }}: <span class="value">{{ RD }}</span></dd>
+          </div>
+
+          <div class="inform total">
+            <table border="0">
+            <tr><td colspan="2">{{ g.maketext('Information about diagnostic results (syndrome scopes)', lang=lang) }}:</td></tr>
+            <tr><td class="high">
+              <dd class="tp">{{ tp['high'] }}</dd>
+              {{ g.maketext('high - an overestimated value of the indicator', lang=lang) }}</td></tr>
+            <tr><td class="middle">
+              <dd class="tp">{{ tp['middle'] }}</dd>
+              {{ g.maketext('middle - the average value of the indicator', lang=lang) }}</td></tr>
+            <tr><td class="normal">
+              <dd class="tp">{{ tp['normal'] }}</dd>
+              {{ g.maketext('normal - a state without deviations', lang=lang) }}</td></tr>
+            <tr><td class="low">
+              <dd class="tp">{{ tp['low'] }}</dd>
+              {{ g.maketext('low - an underestimated value of the indicator', lang=lang) }}</td></tr>
+            <tr><td class="undef">
+              <dd class="tp">{{ tp['undef'] }}</dd>
+              {{ g.maketext('undef - an undefined scope of the indicator', lang=lang) }}</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="diagnosis">
+          <h2>{{ mode_title }}</h2>
+
+          <div class="person">
+            <table border="0">
+              <tr>
+                <td class="head">{{ g.maketext('Person', lang=lang) }}</td><td class="value">{{ chat['profile']['nic'] }}</td>
+              </tr>
+              <tr><td class="head">{{ g.maketext('Gender', lang=lang) }}</td><td class="value">{{ g.maketext(scenario['gender'], lang=lang) }}</td></tr>
+              <tr><td class="head">{{ g.maketext('Age', lang=lang) }}</td><td class="value">{{ scenario['age'] }}</td></tr>
+              <tr><td class="head">{{ g.maketext('Date', lang=lang) }}</td><td class="value">{{ chat['profile']['date'] }}</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="conclusions">
+          <table border="0">
+      {% for key, test_name in tests %}
+            <tr><td colspan="2"><h3>{{ key }} {{ test_name }}</h3></td></tr>
+          {%- for question in chat['tests'][key] -%}
+            {%- if ':' in chat['tests'][key][question] -%}
+            {%- set param, value = chat['tests'][key][question].split(':')-%}
+            <tr><td class="param">{{ g.maketext(param, lang=lang)|safe }}</td><td class="value">{{ value }}</td></tr>
+            {%- endif -%}
+          {%- endfor -%}
+      {% endfor %}
+          </table>
+        </div>
+
+      {%- elif mode == 2 -%}
+
+        <div class="">*** mode 2 for chat {{name}} ***</div>
+
+      {%- else -%}
+      
+        {%- set profile = chat['profile'] -%}
+        {%- set profile_action = chat['profile_action'] -%}
+
+        <div class="action"><a href="{{ profile_action }}">{{ name }}</a></div>
+
+        <ul class="profile">
+        {% for item in profile|dictsort %}
+          <li>{{ item[0] }}: {{ item[1] }}</li>
+        {% endfor %}
+        </ul>
+
+      {%- endif -%}
+    {%- endif -%}
+  {% endfor %}
+
+  </div>
+
+{% endblock %}
+
+{% block info_section_content %}
+
+{% endblock %}
+
+{% block filter %}
+
+{% endblock %}
+
+{% block control_panel %}
+
+{% endblock %}
+
+{% block dialogs_content %}
+
+{% endblock %}
+
+{% block final_scripts %}
+
+{% endblock %}

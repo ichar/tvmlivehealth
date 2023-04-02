@@ -1,0 +1,242 @@
+
+/*** ADMLOGGER ***/
+
+body { overflow-y:inherit; }
+
+.page-header { max-width: 20em; font-size:2.0em !important; }
+ 
+.action a {
+ color: #352cab;
+ text-decoration:none;
+ padding-left, padding-right: 2em;
+}
+ 
+a:hover { color:#963c3c; }
+
+.action {
+    border:1px solid white;
+    background-color: #6080ee;
+    font-weight:bold;
+    font-size: 1.4em;
+    width: 400px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding:1.0em;
+}
+.action a {color:white}
+
+#page-container > .logger { 
+    display:block;
+    border:0px solid #ccc;
+    padding:10px;
+    text-align:left;
+}
+
+.data-title { display:inline-flex; }
+.data-title h2 { 
+    font-size:1.4em; 
+    padding:10px; 
+    color:#384e9b; 
+    line-height:1em; 
+    vertical-align: middle;
+}
+
+.view-data thead th {
+    position: sticky; 
+    background:#38526F; 
+    color:white; 
+    padding:5px;
+    top: 0; 
+    z-index: 1;
+}
+
+div.logger .view-container { width:100%; }
+
+.back {    
+    background-color:#6080ee !important;
+    text-align: center;
+    width: fit-content;
+    margin-left: 10vw !important;
+    font-size:1.2em;
+    font-weight: bold;
+    line-height: 140%;
+    padding:20vw;
+}
+.back a { 
+    padding:20px; 
+    cursor:pointer; 
+    color:white; 
+    white-space:nowrap; 
+    padding-left: 60px; 
+    padding-right: 60px; 
+    width:10em;
+}
+
+#line-content {
+    padding:0;
+    height:48vh;
+    overflow-y: auto; 
+}
+
+#line-table { 
+    border-spacing:5px; 
+    width:-webkit-fill-available;
+}
+
+div.item_error {
+    background-color: inherit;
+    color:#e00;
+    padding:10px 0 10px 0;
+}
+
+h2 { font-size:1.4em; line-height:140%; }
+
+.logger table { border-spacing:5px; border-collapse:initial; }
+
+div.back:hover, div.forward:hover, div.history-menu:hover { 
+    color:white;
+    border-color:white;
+}
+
+/*** Logger Filter Items  ***/
+
+div.logger-filter #type  { width:398px; }
+
+.scope { 
+    color: #333;
+    white-space: nowrap;
+    margin: 10px;
+    float:right;
+}
+.scope table { border-spacing:5px; border-collapse:initial; }
+.scope td { border:1px solid #888; padding:5px 10px;}
+
+.inform { 
+    border:1px solid black; 
+    padding:10px;
+    margin:10px;
+}
+
+.total .tp { 
+    display: inline-block; 
+    color:white; 
+    border:1px solid white;
+    width: 40px;
+    line-height: 180%;
+    text-align: center;
+    padding:0.1em;
+}
+
+.diagnosis { 
+    font-size:1.0em; 
+    width: min-content;
+}
+
+.diagnosis h2 { padding-left:20px; }
+
+/*** Profile ***/
+
+.profile {
+    list-style-type:none; 
+    width: max-content;
+    font-size:1.2em;
+}
+.person { 
+    margin-top:20px;
+    margin-bottom:20px;
+    color:#782c76; 
+}
+
+.person table { border-spacing:5px; border-collapse:initial; }
+.person td { border:1px solid #888; padding:5px 10px;}
+.person .value { white-space:nowrap;  }
+
+h2 { 
+    font-size:1.8em; 
+    color:#184774; 
+    text-decoration:auto;
+    line-height:1.6em;
+}
+h3 { line-height:140%; font-weight:bolder; }
+
+.conclusions { width:100%; margin-top:120px; }
+.conclusions div { width:100%; }
+.conclusions td.head { width: 100%; }
+.conclusions td.param { border:1px solid #888; padding:5px 10px 5px 10px;}
+.conclusions p { font-size:1.1em; }
+.conclusions i {}
+.conclusions .value { 
+    font-weight:bold; 
+    color:#64c; 
+    padding:5px; 
+    border:1px solid black; 
+    text-align: center;
+}
+
+.RD dt, .RD dd  { border:1px solid #888; padding:5px 10px 5px 10px; display: inline-block; font-weight:bolder; }
+.RD dt { width:140px; text-align:center; }
+.RD .value { padding-left:20px; }
+
+.conclusions .param { width:100%; padding-left:10px; }
+.conclusions .high { color:#c20; }
+.conclusions .middle { color:#000; }
+.conclusions .normal { color:#284; }
+.conclusions .low { color:#24c;  }
+
+.total .high .tp { background-color:#c20 !important; }
+.total .middle .tp { background-color:#333 !important; }
+.total .normal .tp { background-color:#284 !important; }
+.total .low .tp { background-color:#24c !important; }
+.total .undef .tp { background-color:#777 !important; }
+
+/*** Media ***/
+
+@media screen and (max-device-width: 320px) {
+
+}
+
+@media screen and (max-device-width: 480px) {
+    .logger { line-height:140%; }
+    .page-header { font-size:4.0em !important; }
+    .data-title h2 { font-size:2.0em; line-height:180%;  }
+    .back { margin-left: 20vw !important; }
+    .back a { font-size:2.0em; line-height:180%; width:40em; }
+    .conclusions, .diagnosis { 
+        font-size:2.8em; 
+        line-height:140%;
+    }
+    .profile, li {
+        font-size:1.8em;
+        line-height:140%;
+    }
+    .scope, .action a {
+        font-size:2.4em;
+        line-height:140%;
+    }
+    .inform {
+        font-size:1.0em;
+        line-height:140%;
+    }
+    .total .tp { 
+        width: 1.4em;
+        padding:0.4em;
+        font-size:1.2em;
+    }
+    .RD .value { line-height:200%; }
+}
+
+@media screen and (min-device-width: 768px) {
+
+}
+
+@media screen and (min-width: 1900px) {
+
+}
+
+@media screen and (max-width: 1600px) {
+
+}
+
+@media screen and (max-width: 1280px) {
+
+}

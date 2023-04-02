@@ -1,0 +1,18 @@
+<footer id="page-footer">
+  <div id="footer-content" class="{{ footer_class }}">
+    <div class="page-footer {{ footer_subclass }}">
+      <div class="footer-command">>>>&nbsp;<a id="scroll-top" href="#top" onclick="self.scrollTo(0,0);return false;">OnTop</a></div>
+      <div class="footer-info">
+        <div>
+          <span class="product-title">{{ g.maketext('Application title') }}</span> <!-- APPLICATION MANAGEMENT SYSTEM-->
+          <span class="f-indent">=</span>
+          <span class="product-name">{{ g.app_product_name }}</span>
+          <span class="f-indent">=</span>
+          <span class="product-title">версия<dd class="product-version">{{ product_version[0] }}</dd>{{ product_version[1] }}</span>
+          <dd class="product-title"><a href="/changelog">[changes list]</a></dd>
+          <dd class="product-release">© «MKARO & COMPANY» LTD, 2017-2023</dd>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
