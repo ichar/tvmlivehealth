@@ -184,18 +184,7 @@ _RESULTS = {
         '1' : ['Тривожність', ((7, 'У Вас немає жодних особливих психологічних проблем, які би Ви не могли здолати самостійно, психологічна допомога не потрібна'), (10, 'В наявності субклінічно виражена тривожність, ймовірно, має сенс звернутися за допомогою до психолога'), (99, 'В наявності клінічно виражена тривожність, наполегливо рекомендується звернутися до психолога'))],
         '2' : ['Депресія', ((7, 'У вас немає жодних особливих психологічних проблем, які би ви не могли здолати самостійно, психологічна допомога не потрібна'), (10, 'В наявності субклінічно виражена депресія, ймовірно, має сенс звернутися за допомогою до психолога'), (99, 'В наявності клінічно виражена депресія, наполегливо рекомендується звернутися до психолога'))],
     },
-    'en': {
-        '1' : ['Anxiety', (
-             (7, 'You don\'t have any particular anxiety problems that you can\'t manage on your own, you don\'t need psychological help'),
-             (10, 'In the presence of subclinical anxiety, it probably makes sense to seek help from a psychologist'),
-             (99, 'Clinical anxiety present, specialist advice highly recommended')
-         )],
-        '2' : ['Depression', (
-             (7, 'You don\'t have any particular problems with depression that you can\'t deal with on your own, you don\'t need psychological help')
-             (10, 'In the presence of subclinical depression, it probably makes sense to seek help from a psychologist'),
-             (99, 'Clinical depression present, specialist consultation highly recommended')
-         )],
-    }
+}
 
 _FINISH = {
     'ru': (
@@ -206,7 +195,7 @@ _FINISH = {
 Мы благодарим Вас за Ваши ответы.
 Желаем Вам крепкого здоровья, и всего Вам доброго!
 """,
-), 
+),
     'uk': (
 """
 Завершення діалогу.
@@ -284,15 +273,6 @@ def answer(bot, message, command, data=None, logger=None, question=None, **kw):
 
         dbs.drop_before(_test_name, **kw)
         dbs.save_params(_test_name, _RESULTS, _results, **kw)
-        """
-        for p in sorted([x for x in _RESULTS[lang].keys()]):
-            if p in _results:
-                param = _PARAMS[lang][p][0]
-                value, s1 = _results[p]
-                storage.set(name, '%s.%s%s' % (_TEST_NAME, RCODES['RP'], p), value)
-                storage.set(name, '%s.%s%s' % (_TEST_NAME, RCODES['TP'], p), '<i>%s</i>. %s:%s' % (param, s1, value), with_encode=True)
-                storage.set(name, '%s.%s%s' % (_TEST_NAME, RCODES['NP'], p), param, with_encode=True)
-        """
 
         if kw['query_id']:
             bot.answer_callback_query(

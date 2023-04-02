@@ -208,9 +208,10 @@ def tests(bot, message, logger=None, **kw):
     if _design_mode == 'menu':
         obs = []
         for i, k in sorted([(int(x[1:]), x) for x in items.keys()]):
+            module = tests[k]
             qcount = 0
             try:
-                _module = __import__(tests[k], fromlist=['total_questions', 'answer'])
+                _module = __import__(module, fromlist=['total_questions', 'answer'])
                 qcount = _module.total_questions()
             except:
                 if IsPrintExceptions:
