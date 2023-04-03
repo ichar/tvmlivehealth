@@ -4,6 +4,16 @@
 body { overflow-y:inherit; color:#777; }
 
 .page-header { max-width: 20em; font-size:2.0em !important; }
+
+.inline-content div { display: flow-root;}
+
+div.logger .view-container { width:100%; }
+
+#line-content {
+    padding:0;
+    height:48vh;
+    overflow-y: auto; 
+}
  
 .action a {
  color: #352cab;
@@ -32,7 +42,7 @@ a:hover { color:#963c3c; }
     text-align:left;
 }
 
-.data-title { display:inline-flex; }
+.data-title, .back { display:inline-block; }
 .data-title h2 { 
     font-size:1.4em; 
     padding:10px; 
@@ -49,8 +59,6 @@ a:hover { color:#963c3c; }
     top: 0; 
     z-index: 1;
 }
-
-div.logger .view-container { width:100%; }
 
 .back {    
     background-color:#6080ee !important;
@@ -70,12 +78,6 @@ div.logger .view-container { width:100%; }
     padding-left: 60px; 
     padding-right: 60px; 
     width:10em;
-}
-
-#line-content {
-    padding:0;
-    height:48vh;
-    overflow-y: auto; 
 }
 
 #line-table { 
@@ -132,7 +134,7 @@ div.logger-filter #type  { width:398px; }
     width: min-content;
 }
 
-.diagnosis h2 { padding-left:20px; }
+.diagnosis h2 { padding-left:20px; white-space:nowrap; }
 
 /*** Profile ***/
 
@@ -159,7 +161,7 @@ h2 {
 }
 h3 { line-height:140%; font-weight:bolder; }
 
-.conclusions { width:100%; margin-top:120px; }
+.conclusions { width:100%; }
 .conclusions div { width:100%; }
 .conclusions td.head { width: 100%; }
 .conclusions td.param { border:1px solid #888; padding:5px 10px 5px 10px;}

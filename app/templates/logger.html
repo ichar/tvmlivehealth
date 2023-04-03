@@ -31,15 +31,13 @@ var search_title = '{{ search_title }}'; //"Logger Search context..."
 
 {% block data_section_title %}
 
-  <div class="data-title"><h2>{{ g.maketext(data_title, lang=lang) }}</h2>
+  <div class="data-title"><h2>{{ g.maketext(data_title, lang=lang) }}</h2></div>
 
   {%- if mode == 1 -%}
 
   <div class="back"><a href="{{ back }}">{{ g.maketext('Back', lang=lang) }}</a></div>
 
   {%- endif -%}
-
-  </div>
 
 {% endblock %}
 
