@@ -27,6 +27,15 @@ _AGE = {
     'uk': (('до 18 років', 'age:0'), ('18-29', 'age:1'), ('30-49', 'age:2'), ('50-69', 'age:3'), ('70 і більше', 'age:4')),
 }
 
+def get_values(lang):
+    #
+    #   Arguments:
+    #       lwng -- str, lang of view
+    #   Returns:
+    #       ages -- dict, ages info
+    #
+    return dict([(x[1].split(':')[1], x[0]) for x in _AGE[lang] if ':' in x[1]])
+
 def get_question(i, lang, no_eof=None):
     s = _QUESTIONS[lang][i].strip()
     return no_eof and re.sub(r'\n', ' ', s) or s

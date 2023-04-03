@@ -59,6 +59,8 @@ var search_title = '{{ search_title }}'; //"Logger Search context..."
 
       {%- if mode == 1 -%}
 
+        {%- set profile = chat['profile'] -%}
+
         <div class = "scope">
           <div class="RD">
             <dd>{{ g.maketext('Registry Date', lang=lang) }}: <span class="value">{{ RD }}</span></dd>
@@ -92,11 +94,11 @@ var search_title = '{{ search_title }}'; //"Logger Search context..."
           <div class="person">
             <table border="0">
               <tr>
-                <td class="head">{{ g.maketext('Person', lang=lang) }}</td><td class="value">{{ chat['profile']['nic'] }}</td>
+                <td class="head">{{ g.maketext('Person', lang=lang) }}</td><td class="value">{{ profile['nic'] }}</td>
               </tr>
               <tr><td class="head">{{ g.maketext('Gender', lang=lang) }}</td><td class="value">{{ g.maketext(scenario['gender'], lang=lang) }}</td></tr>
-              <tr><td class="head">{{ g.maketext('Age', lang=lang) }}</td><td class="value">{{ scenario['age'] }}</td></tr>
-              <tr><td class="head">{{ g.maketext('Date', lang=lang) }}</td><td class="value">{{ chat['profile']['date'] }}</td></tr>
+              <tr><td class="head">{{ g.maketext('Age', lang=lang) }}</td><td class="value">{{ profile['age'] }}</td></tr>
+              <tr><td class="head">{{ g.maketext('Date', lang=lang) }}</td><td class="value">{{ profile['date'] }}</td></tr>
             </table>
           </div>
         </div>

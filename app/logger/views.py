@@ -99,10 +99,22 @@ class LogProcess:
         self._started = getToday()
 
         self.is_with_points = 0
+        self.ages = {}
 
         self.storage = g.storage
 
     def _init_state(self, mode=None):
+        """
+            Init state the class
+            
+            Arguments:
+                mode    -- int (self.mode), mode of data parsing
+                    0 (false): chat ids data (user's profile)
+
+                    1: conclusions data pasrsing
+                
+                Used for self.log method
+        """
         self._tests_count = tests_count()
 
         self.mode = mode or 0
@@ -111,7 +123,9 @@ class LogProcess:
 
         if self.system_config:
             self.is_with_points = self.system_config.IsWithPoints
-    
+        #
+        #   TABLE DATA DEFINITIONS  (unused just now, it's for modules compatibility)
+        #
         self.total_rows = 0
         self.total_selected = None
         self.per_page = 1
@@ -339,20 +353,28 @@ class LogProcess:
     def log(self, chat_id=None):
         self.point('logger.log-start')
 
-        from app.semaphore.views import initDefaultSemaphore # XXX
-        debug, kw = init_response('Application LogViewer Page', mode='logger')
-
         html = ''
         content = "*** it's log ***"
-
-        groups = self._get_groups()
-
-        names = [x for x in self._get_chat_names() if not self.mode or x == chat_id]
-
+        #
+        #   View Data init
+        #
         output = {'chats': {}}
         chats = output['chats']
         tests = ()
         tp = {'high':0, 'middle':0, 'normal':0, 'low':0, 'undef':0,}
+        #
+        #   Semaphore init
+        #
+        from app.semaphore.views import initDefaultSemaphore # XXX
+        debug, kw = init_response('Application LogViewer Page', mode='logger')
+        #
+        #   List of chats (persons)
+        #
+        names = [x for x in self._get_chat_names() if not self.mode or x == chat_id]
+        #
+        #   Groups of data parts: profile, conclusions for scenario and tests
+        #
+        groups = self._get_groups()
 
         path = request.path
 
@@ -413,10 +435,17 @@ class LogProcess:
                 self.point('logger.log-%s' % caption)
 
         self.point('logger.log is ready')
-
+        mode_title = ''
+        #
+        #   Lang of user
+        #
         request_lang = get_request_item('lang')
         lang = chat_id and output['chats'][chat_id]['profile'].get('lang') or DEFAULT_LANGUAGE
-        mode_title = ''
+        #
+        #   ages -- dict, ages of persons {[N]:<age in string>}, N -- str (age group key: 1,2,3)
+        #
+        from app.dialogs import age
+        self.ages = age.get_values(lang)
 
         if not self.mode:
             data_title = maketext('LOGGER PERSONS PAGE TITLE', lang=lang)
@@ -450,8 +479,10 @@ class LogProcess:
             #
             #   Conclusion tests diagnosis for chat name
             #
-            chat = output['chats'].get(chat_id)
             data_title = maketext('LOGGER DATA PAGE TITLE', lang=lang)
+            chat = output['chats'].get(chat_id)
+            profile = chat.get('profile')
+            scenario = chat.get('scenario')
 
             for key in chat['tests']:
                 test = key[:-1]
@@ -476,6 +507,13 @@ class LogProcess:
 
             tests = [('%s.' % key, name[0]) for key, name in TESTNAMES[request_lang or lang].items()]
             mode_title = maketext('Diagnosis test conclusions', lang=lang)
+            #
+            #   Add aditional data items to view
+            #
+            if profile and scenario:
+                key = 'age'
+                age = scenario.get(key)
+                profile[key] = self.ages.get(age) or age
 
         self.point('logger.actions')
 
