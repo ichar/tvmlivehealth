@@ -242,3 +242,8 @@ h3 { line-height:140%; font-weight:bolder; }
 @media screen and (max-width: 1280px) {
 
 }
+
+@media print {
+    .total .tp { border:1px solid black; }
+    #sidebarBox, .page-footer { display: none; }
+}
