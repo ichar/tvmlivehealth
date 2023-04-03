@@ -245,5 +245,5 @@ h3 { line-height:140%; font-weight:bolder; }
 
 @media print {
     .total .tp { border:1px solid black; }
-    #sidebarBox, .page-footer { display: none !important; }
+    #sidebarBox, #footer-section { display: none !important; }
 }
