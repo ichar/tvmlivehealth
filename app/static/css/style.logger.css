@@ -113,6 +113,17 @@ div.logger-filter #type  { width:398px; }
 .scope table { border-spacing:5px; border-collapse:initial; }
 .scope td { border:1px solid #888; padding:5px 10px;}
 
+.done { margin:5px; }
+.done_tests dt, .done_tests dd { 
+    border:1px solid #888; 
+    display:inline-block; 
+    padding:10px; 
+    color: #333;
+    font-weight: bold;
+}
+.done_tests .value {background-color:skyblue; color:#333; padding:10px 15px; font-size: 1.2em; }
+
+
 .inform { 
     border:1px solid black; 
     padding:10px;
@@ -211,10 +222,20 @@ h3 { line-height:140%; font-weight:bolder; }
         font-size:1.8em;
         line-height:140%;
     }
-    .scope, .action a {
+    .done, .scope, .action a {
         font-size:2.4em;
         line-height:140%;
     }
+    .done {
+        margin-top:1.4em;
+        margin-bottom:1.4em;
+    }
+    .done_tests dt, .done_tests dd { 
+        padding:20px; 
+        line-height:140%;
+    }
+    .action { width:50%; padding:40px; }
+    .action a { padding:40px; }
     .inform {
         font-size:1.0em;
         line-height:140%;

@@ -103,6 +103,14 @@ var search_title = '{{ search_title }}'; //"Logger Search context..."
           </div>
         </div>
 
+        <div class="done">
+          <div class="done_tests">
+            <dt>{{ g.maketext('Done tests', lang=lang) }}:</dt>
+            <dd class="value">{{ profile['Tests'][0] }} </dd>
+            <span>{{ g.maketext('from', lang=lang) }}&nbsp;[ {{ tests|length }} ]</span>
+          </div>
+        </div>
+
         <div class="conclusions">
           <table border="0">
       {% for key, test_name in tests %}
@@ -126,7 +134,7 @@ var search_title = '{{ search_title }}'; //"Logger Search context..."
         {%- set profile = chat['profile'] -%}
         {%- set profile_action = chat['profile_action'] -%}
 
-        <div class="action"><a href="{{ profile_action }}">{{ name }}</a></div>
+        <div class="action"><a href="{{ profile_action }}">(&nbsp;{{ loop.index }}&nbsp;)&nbsp;{{ name }}</a></div>
 
         <ul class="profile">
         {% for item in profile|dictsort %}

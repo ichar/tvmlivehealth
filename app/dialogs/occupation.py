@@ -28,7 +28,7 @@ _OCCUPATION = {
 }
 
 def get_question(i, lang, no_eof=None):
-    s = _QUESTIONS[lang][i].strip()
+    s = '%s:' % _QUESTIONS[lang][i].strip()
     return no_eof and re.sub(r'\n', ' ', s) or s
 
 def answer(bot, message, command, data=None, logger=None, **kw):
@@ -36,4 +36,4 @@ def answer(bot, message, command, data=None, logger=None, **kw):
         Make the step's answer
     """
     lang = kw.get('lang') or DEFAULT_LANGUAGE
-    send_inline_keyboard(bot, message, _OCCUPATION[lang], get_question(1, lang))
+    send_inline_rows_keyboard(bot, message, _OCCUPATION[lang], get_question(1, lang))

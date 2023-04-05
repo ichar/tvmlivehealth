@@ -163,6 +163,7 @@ def make_answer(bot, message, command, data=None, logger=None, **kw):
     module, keyboard, index, question, with_usage, code = '', None, -1, 0, False, 1
 
     tests = ['T%s' % str(n) for n in range(1, tests_count())]
+    scenario = SCENARIO
     words = []
 
     name = chat.name
@@ -225,12 +226,12 @@ def make_answer(bot, message, command, data=None, logger=None, **kw):
             if command.startswith('T') or words[0].startswith('T'):
                 is_test = True
             #
-            #   Беседа: /qN
-            #   -----------
+            #   Беседа: ответ на вопрос
+            #   -----------------------
             #    <question> - номер вопроса
             #    <spec>, <index> - пункт сценария
             #
-            spec = SCENARIO[index][1]
+            spec = len(scenario) > index and scenario[index][1] or None
             if spec is not None and len(words) > 2:
                 question = words[1].isdigit() and int(words[1]) or 0
                 if question >= spec:
@@ -244,10 +245,10 @@ def make_answer(bot, message, command, data=None, logger=None, **kw):
                 index += 1
 
         if not is_test:
-            if index > len(SCENARIO)-1:
+            if index > len(scenario) - 1:
                 module = END[0]
             else:
-                module = SCENARIO[index][0]
+                module = scenario[index][0]
                 is_scenario = True
     else:
         #

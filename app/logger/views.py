@@ -362,6 +362,7 @@ class LogProcess:
         chats = output['chats']
         tests = ()
         tp = {'high':0, 'middle':0, 'normal':0, 'low':0, 'undef':0,}
+        done_tests = 0
         #
         #   Semaphore init
         #
@@ -447,7 +448,7 @@ class LogProcess:
         from app.dialogs import age
         self.ages = age.get_values(lang)
 
-        if not self.mode:
+        if self.mode in (0,1):
             data_title = maketext('LOGGER PERSONS PAGE TITLE', lang=lang)
             #
             #   User's Profile [output]
@@ -464,18 +465,27 @@ class LogProcess:
                 scenario = None
     
                 if profile:
-                    tests = [(x, len(out['tests'][x])) for x in out['tests'].keys() if x]
+                    tests = [x for x in out['tests'].keys() if x]
                     scenario = [(x, len(out['scenario'][x])) for x in out['scenario'].keys() if x]
                 else:
                     out['profile'] = {}
                     profile = out['profile']
                 
-                profile['Tests'] = tests and (len(tests), sum([x[1] for x in tests])) or (0, 0)
+                #profile['Tests'] = tests and (len(tests) - 1, sum([x[1] for x in tests])) or (0, 0)
                 profile['Scenarios'] = scenario and (len(scenario), sum([x[1] for x in scenario])) or (0, 0)
+
+                done_tests = 0
+                total = 0
+                for test in tests:
+                    count = len(out['tests'][test].keys())
+                    if count > 0:
+                        done_tests += 1
+                        total += count
+                profile['Tests'] = [done_tests, total]
 
                 out['profile_action'] = f'/log/profile/{chat}'
 
-        elif self.mode == 1:
+        if self.mode == 1:
             #
             #   Conclusion tests diagnosis for chat name
             #
@@ -577,6 +587,7 @@ class LogProcess:
             'mode'          : self.mode,
             'RD'            : getDate(getToday(), format=LOCAL_FULL_TIMESTAMP),
             'tests'         : tests,
+            'done_tests'    : done_tests-1,
             'content'       : content,
             'output'        : output,
             'names'         : names,
